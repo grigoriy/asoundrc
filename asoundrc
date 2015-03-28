@@ -1,0 +1,21 @@
+pcm.builtin { type hw; card PCH; }
+ctl.builtin { type hw; card PCH; }
+pcm.usb { type hw; card C110; }
+
+pcm.!default
+{
+    type asym
+    playback.pcm
+    {
+        type plug
+        slave.pcm "dmix"
+    }
+    capture.pcm
+    {
+        type plug
+        slave.pcm "usb"
+    }
+}
+
+# pcm.builtin
+ctl.!default ctl.builtin
